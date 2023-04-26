@@ -2,14 +2,6 @@ const keyKeyboard = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit
 
 const codeKeyboard = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'CapsLock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';', "'", 'Enter', 'Shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/', 'ArrowUp', 'Shift', 'Control', 'Alt', ' ', 'Alt', 'Control', 'ArrowLeft', 'ArrowDown', 'ArrowRight'];
 
-document.onkeydown = function(event){
-  console.log(event.key)
-  // keyKeyboard.push(event.code);
-  // console.log(keyKeyboard);
-  // codeKeyboard.push(event.key);
-  // console.log(codeKeyboard);
-}
-
 function initWrapper(){
   let out = '<section class="keyboard-wrapper"></section>';
   document.querySelector('.keyboard').innerHTML = out;
@@ -35,3 +27,11 @@ function initBoard(){
 }
 
 initBoard();
+
+document.onkeydown = function(event){
+  document.querySelector('.k-key[data="'+ event.code +'"]').classList.add('active');
+}
+
+document.onkeyup = function (event){
+  document.querySelector('.k-key[data="'+ event.code +'"]').classList.remove('active');
+}

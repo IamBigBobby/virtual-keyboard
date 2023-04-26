@@ -24,3 +24,8 @@
 .letter{
   text-transform: lowercase;
 }
+.active{
+  background-color: orange;
+  transition: 0.2s;
+  border-radius: 10px;
+}
