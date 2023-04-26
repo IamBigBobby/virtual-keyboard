@@ -4,7 +4,8 @@
   display: flex;
   flex-wrap: wrap;
   border: 2px solid black;
-  padding: 5px; }
+  padding: 5px;
+  border-radius: 5px; }
 
 .k-key {
   width: 50px;
@@ -18,6 +19,9 @@
   width: 100px; }
 
 .space-key {
-  width: 215px; }
+  width: 220px; }
+
+.letter {
+  text-transform: lowercase; }
 
 /*# sourceMappingURL=style.css.map */
