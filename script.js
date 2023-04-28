@@ -13,7 +13,7 @@ initKeyboardWrapper();
 
 function initBoard(){
   let out = '';
-  out = '<textarea id="textarea" rows="10" cols="130" placeholder="Введите данные с клавиатуры" autofocus></textarea>';
+  out = '<textarea id="textarea" rows="10" cols="130" placeholder="Введите данные с клавиатуры"></textarea>';
   for (let i = 0; i < codeKeyboard.length; i++){
     if (codeKeyboard[i] == 'Enter' || codeKeyboard[i] == 'Backspace' || codeKeyboard[i] == 'Tab' || codeKeyboard[i] == 'CapsLock'|| codeKeyboard[i] == 'Shift' || codeKeyboard[i] == 'Control' || codeKeyboard[i] == 'Alt'){
       out += '<div class="k-key specical-key" data="'+keyKeyboard[i]+'">'+codeKeyboard[i]+'</div>'
@@ -40,7 +40,15 @@ document.onkeydown = function(event){
   let target = event.code;
   let positionKey = keyKeyboard.indexOf(target);
   let pressSymbol =codeKeyboard[positionKey];
-  area.value += pressSymbol;
+
+  if (pressSymbol === 'Backspace'){
+    let backspaceArr = area.value.split('');
+    backspaceArr.pop();
+    area.value = backspaceArr.join('');
+  }
+  else{
+    area.value += pressSymbol;
+  }
 }
 
 document.onkeyup = function (event){
@@ -63,6 +71,7 @@ keys.forEach((key) => {
     key.classList.remove('active');
   })
 })
+
 
 
 
