@@ -13,7 +13,7 @@ initKeyboardWrapper();
 
 function initBoard(){
   let out = '';
-  out = '<textarea id="textarea" rows="10" cols="130" placeholder="Введите данные с клавиатуры"></textarea>';
+  out = '<textarea id="textarea" rows="10" cols="130" placeholder="Введите данные с клавиатуры" disabled></textarea>';
   for (let i = 0; i < codeKeyboard.length; i++){
     if (codeKeyboard[i] == 'Enter' || codeKeyboard[i] == 'Backspace' || codeKeyboard[i] == 'Tab' || codeKeyboard[i] == 'CapsLock'|| codeKeyboard[i] == 'Shift' || codeKeyboard[i] == 'Control' || codeKeyboard[i] == 'Alt'){
       out += '<div class="k-key specical-key" data="'+keyKeyboard[i]+'">'+codeKeyboard[i]+'</div>'
@@ -37,6 +37,7 @@ area = document.getElementById('textarea');
 
 document.onkeydown = function(event){
   document.querySelector('.k-key[data="'+ event.code +'"]').classList.add('active');
+  event.preventDefault();
   let target = event.code;
   let positionKey = keyKeyboard.indexOf(target);
   let pressSymbol =codeKeyboard[positionKey];
@@ -45,6 +46,12 @@ document.onkeydown = function(event){
     let backspaceArr = area.value.split('');
     backspaceArr.pop();
     area.value = backspaceArr.join('');
+  }
+  else if (pressSymbol === 'Tab'){
+    area.value += '  ';
+  }
+  else if (pressSymbol === 'Enter'){
+    area.value += '\n';
   }
   else{
     area.value += pressSymbol;
