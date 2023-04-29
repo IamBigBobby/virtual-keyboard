@@ -24,6 +24,9 @@
 .letter {
   text-transform: lowercase; }
 
+.letter-upper {
+  text-transform: uppercase; }
+
 .active {
   background-color: orange;
   transition: 0.2s;
