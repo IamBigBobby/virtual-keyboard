@@ -93,6 +93,21 @@ document.onkeydown = function(event){
       })
     }
   }
+  else if (pressSymbol == 'Shift'){
+    if (currentArrBoard == codeKeyboardLowerEng){
+      document.querySelectorAll('.k-key').forEach((element) => {
+        element.remove();
+      });
+
+      initBoard();
+
+      currentArrBoard = codeKeyboardUpperEng;
+
+      document.querySelectorAll('.letter').forEach((element) => {
+        element.classList.add('letter-upper');
+      })
+    }
+  }
   else{
     area.value += pressSymbol;
   }
@@ -100,6 +115,24 @@ document.onkeydown = function(event){
 
 document.onkeyup = function (event){
   document.querySelector('.k-key[data="'+ event.code +'"]').classList.remove('active');
+  event.preventDefault();
+  let target = event.code;
+  let positionKey = keyKeyboard.indexOf(target);
+  let pressSymbol = currentArrBoard[positionKey];
+
+  if (pressSymbol == 'Shift'){
+    document.querySelectorAll('.k-key').forEach((element) => {
+      element.remove();
+    });
+
+    initBoard();
+
+    currentArrBoard = codeKeyboardLowerEng;
+
+    document.querySelectorAll('.letter').forEach((element) => {
+      element.classList.remove('letter-upper');
+    })
+  }
 }
 
 
