@@ -396,10 +396,13 @@ keys.forEach((key) => {
 })
 
 function clickButton(event){
+  
   let target = event.target;
   let pressedButton = target.getAttribute('data');
   let positionKey = keyKeyboard.indexOf(pressedButton);
   let pressSymbol = currentArrBoard[positionKey];
+
+  target.classList.add('active');
 
   if (pressSymbol == 'Backspace'){
     let backspaceArr = area.value.split('');
@@ -432,55 +435,90 @@ function clickButton(event){
     arrow.innerHTML = '&#x2192;';
     area.value += arrow.innerHTML;
   }
-  // else if (pressSymbol == 'CapsLock'){
-  //   switch (currentArrBoard){
-  //     case currentArrBoard = codeKeyboardLowerEng:
-  //       document.querySelectorAll('.k-key').forEach((element) => {
-  //         element.remove();
-  //       });
-  //       currentArrBoard = codeKeyboardUpperEng;
-  //       initBoard();
-  //       document.querySelectorAll('.letter').forEach((element) => {
-  //         element.classList.add('letter-upper');
-  //       })
-  //       document.querySelector('.capslk-key').classList.add('active');
-  //       break;
-  //     case currentArrBoard = codeKeyboardLowerRu:
-  //       document.querySelectorAll('.k-key').forEach((element) => {
-  //         element.remove();
-  //       });
-  //       currentArrBoard = codeKeyboardUpperRu;
-  //       initBoard();
-  //       document.querySelectorAll('.letter').forEach((element) => {
-  //         element.classList.add('letter-upper');
-  //       })
-  //       document.querySelector('.capslk-key').classList.add('active');
-  //       break;
-      
-  //     case currentArrBoard = codeKeyboardUpperEng:
-  //       document.querySelectorAll('.k-key').forEach((element) => {
-  //         element.remove();
-  //       });
-  //       currentArrBoard = codeKeyboardLowerEng;
-  //       initBoard();
-  //       document.querySelectorAll('.letter').forEach((element) => {
-  //         element.classList.remove('letter-upper');
-  //       })
-  //       document.querySelector('.capslk-key').classList.add('active');
-  //       break;
+  else if (pressSymbol == 'CapsLock'){
+    document.querySelector('.capslk-key').classList.add('active');
+    switch (currentArrBoard){
+      case currentArrBoard = codeKeyboardLowerEng:
+        document.querySelectorAll('.k-key').forEach((element) => {
+          element.remove();
+        });
+        currentArrBoard = codeKeyboardUpperEng;
+        initBoard();
 
-  //     case currentArrBoard = codeKeyboardUpperRu:
-  //       document.querySelectorAll('.k-key').forEach((element) => {
-  //         element.remove();
-  //       });
-  //       currentArrBoard = codeKeyboardLowerRu;
-  //       initBoard();
-  //       document.querySelectorAll('.letter').forEach((element) => {
-  //         element.classList.remove('letter-upper');
-  //       })
-  //       document.querySelector('.capslk-key').classList.add('active');
-  //   }
-  // }
+        document.querySelectorAll('.k-key').forEach((key) => {
+          key.addEventListener('mousedown', clickButton)
+          key.addEventListener('mouseup', function(){
+            key.classList.remove('active');
+          })
+        })
+        document.querySelectorAll('.letter').forEach((element) => {
+          element.classList.add('letter-upper');
+        })
+        document.querySelector('.capslk-key').classList.add('active');
+        break;
+      case currentArrBoard = codeKeyboardLowerRu:
+        document.querySelectorAll('.k-key').forEach((element) => {
+          element.remove();
+        });
+        currentArrBoard = codeKeyboardUpperRu;
+        initBoard();
+
+        document.querySelectorAll('.k-key').forEach((key) => {
+          key.addEventListener('mousedown', clickButton)
+          key.addEventListener('mouseup', function(){
+            key.classList.remove('active');
+          })
+        })
+
+        document.querySelectorAll('.letter').forEach((element) => {
+          element.classList.add('letter-upper');
+        })
+        document.querySelector('.capslk-key').classList.add('active');
+        break;
+      
+      case currentArrBoard = codeKeyboardUpperEng:
+        document.querySelectorAll('.k-key').forEach((element) => {
+          element.remove();
+        });
+        currentArrBoard = codeKeyboardLowerEng;
+        initBoard();
+
+        document.querySelectorAll('.k-key').forEach((key) => {
+          key.addEventListener('mousedown', clickButton)
+          key.addEventListener('mouseup', function(){
+            key.classList.remove('active');
+          })
+        })
+
+        document.querySelectorAll('.letter').forEach((element) => {
+          element.classList.remove('letter-upper');
+        })
+        document.querySelector('.capslk-key').classList.add('active');
+        break;
+
+      case currentArrBoard = codeKeyboardUpperRu:
+        document.querySelectorAll('.k-key').forEach((element) => {
+          element.remove();
+        });
+        currentArrBoard = codeKeyboardLowerRu;
+        initBoard();
+
+        document.querySelectorAll('.k-key').forEach((key) => {
+          key.addEventListener('mousedown', clickButton)
+          key.addEventListener('mouseup', function(){
+            key.classList.remove('active');
+          })
+        })
+
+        document.querySelectorAll('.letter').forEach((element) => {
+          element.classList.remove('letter-upper');
+        })
+        document.querySelector('.capslk-key').classList.add('active');
+    }
+  }
+  else if (pressSymbol == 'Control' || pressSymbol == 'Shift' || pressSymbol == 'Alt'){
+    area.value += '';
+  }
   else{
     area.value += pressSymbol;
   }
