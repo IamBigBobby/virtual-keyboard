@@ -131,6 +131,13 @@ document.onkeydown = function(event){
       document.querySelectorAll('.letter').forEach((element) => {
         element.classList.add('letter-upper');
       })
+
+      if (target == 'ShiftLeft'){
+        document.querySelectorAll('.shift-key')[0].classList.add('active')
+      }
+      else if (target == 'ShiftRight'){
+        document.querySelectorAll('.shift-key')[1].classList.add('active');
+      }
     }
   }
   else{
