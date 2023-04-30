@@ -190,7 +190,6 @@ document.onkeydown = function(event){
   else if (pressSymbol == 'Control'){
     area.value += '';
     flagChangeLanguage = true;
-    console.log(flagChangeLanguage)
   }
   else if (pressSymbol == 'Alt'){
     area.value += '';
@@ -203,12 +202,12 @@ document.onkeydown = function(event){
           });
           currentArrBoard = codeKeyboardLowerRu;
           initBoard();
-          // if (target == 'AltLeft'){
-          //   document.querySelectorAll('.alt-key')[0].classList.add('active')
-          // }
-          // else if (target == 'AltRight'){
-          //   document.querySelectorAll('.alt-key')[1].classList.add('active');
-          // }
+          if (target == 'AltLeft'){
+            document.querySelectorAll('.alt-key')[0].classList.add('active')
+          }
+          else if (target == 'AltRight'){
+            document.querySelectorAll('.alt-key')[1].classList.add('active');
+          }
           break;
 
         case currentArrBoard = codeKeyboardLowerRu:
@@ -217,12 +216,13 @@ document.onkeydown = function(event){
           });
           currentArrBoard = codeKeyboardLowerEng;
           initBoard();
-          // if (target == 'AltLeft'){
-          //   document.querySelectorAll('.alt-key')[0].classList.add('active')
-          // }
-          // else if (target == 'AltRight'){
-          //   document.querySelectorAll('.alt-key')[1].classList.add('active');
-          // }
+
+          if (target == 'AltLeft'){
+            document.querySelectorAll('.alt-key')[0].classList.add('active')
+          }
+          else if (target == 'AltRight'){
+            document.querySelectorAll('.alt-key')[1].classList.add('active');
+          }
           break;
 
         case currentArrBoard = codeKeyboardUpperEng:
@@ -231,12 +231,17 @@ document.onkeydown = function(event){
           });
           currentArrBoard = codeKeyboardUpperRu;
           initBoard();
-          // if (target == 'AltLeft'){
-          //   document.querySelectorAll('.alt-key')[0].classList.add('active')
-          // }
-          // else if (target == 'AltRight'){
-          //   document.querySelectorAll('.alt-key')[1].classList.add('active');
-          // }
+
+          document.querySelectorAll('.letter').forEach((element) => {
+            element.classList.add('letter-upper');
+          })
+
+          if (target == 'AltLeft'){
+            document.querySelectorAll('.alt-key')[0].classList.add('active')
+          }
+          else if (target == 'AltRight'){
+            document.querySelectorAll('.alt-key')[1].classList.add('active');
+          }
           break;
 
         case currentArrBoard = codeKeyboardUpperRu:
@@ -245,12 +250,17 @@ document.onkeydown = function(event){
           });
           currentArrBoard = codeKeyboardUpperEng;
           initBoard();
-          // if (target == 'AltLeft'){
-          //   document.querySelectorAll('.alt-key')[0].classList.add('active')
-          // }
-          // else if (target == 'AltRight'){
-          //   document.querySelectorAll('.alt-key')[1].classList.add('active');
-          // }
+
+          document.querySelectorAll('.letter').forEach((element) => {
+            element.classList.add('letter-upper');
+          })
+          
+          if (target == 'AltLeft'){
+            document.querySelectorAll('.alt-key')[0].classList.add('active')
+          }
+          else if (target == 'AltRight'){
+            document.querySelectorAll('.alt-key')[1].classList.add('active');
+          }
           break;
       }
     }
@@ -296,7 +306,6 @@ document.onkeyup = function (event){
   else if (pressSymbol == 'Control'){
     area.value += '';
     flagChangeLanguage = false;
-    console.log(flagChangeLanguage)
   }
 }
 
