@@ -151,46 +151,92 @@ document.onkeydown = function(event){
     }
   }
   else if (pressSymbol == 'Shift'){
-    if (currentArrBoard == codeKeyboardLowerEng){
-      document.querySelectorAll('.k-key').forEach((element) => {
-        element.remove();
-      });
+    switch (currentArrBoard){
 
-      currentArrBoard = codeKeyboardUpperEng;
+      case currentArrBoard = codeKeyboardLowerEng:
 
-      initBoard();
+        document.querySelectorAll('.k-key').forEach((element) => {
+          element.remove();
+        });
 
-      document.querySelectorAll('.letter').forEach((element) => {
-        element.classList.add('letter-upper');
-      })
+        currentArrBoard = codeKeyboardUpperEng;
 
-      if (target == 'ShiftLeft'){
-        document.querySelectorAll('.shift-key')[0].classList.add('active')
-      }
-      else if (target == 'ShiftRight'){
-        document.querySelectorAll('.shift-key')[1].classList.add('active');
-      }
+        initBoard();
+
+        document.querySelectorAll('.letter').forEach((element) => {
+          element.classList.add('letter-upper');
+        })
+
+        if (target == 'ShiftLeft'){
+          document.querySelectorAll('.shift-key')[0].classList.add('active')
+        }
+
+        else if (target == 'ShiftRight'){
+          document.querySelectorAll('.shift-key')[1].classList.add('active');
+        }
+        break;
+
+        case currentArrBoard = codeKeyboardLowerRu:
+          document.querySelectorAll('.k-key').forEach((element) => {
+            element.remove();
+          });
+    
+          currentArrBoard = codeKeyboardUpperRu;
+    
+          initBoard();
+    
+          document.querySelectorAll('.letter').forEach((element) => {
+            element.classList.add('letter-upper');
+          })
+    
+          if (target == 'ShiftLeft'){
+            document.querySelectorAll('.shift-key')[0].classList.add('active')
+          }
+          else if (target == 'ShiftRight'){
+            document.querySelectorAll('.shift-key')[1].classList.add('active');
+          }
+          break;
     }
-    else if (currentArrBoard == codeKeyboardLowerRu){
-      document.querySelectorAll('.k-key').forEach((element) => {
-        element.remove();
-      });
+    // if (currentArrBoard == codeKeyboardLowerEng){
+    //   document.querySelectorAll('.k-key').forEach((element) => {
+    //     element.remove();
+    //   });
 
-      currentArrBoard = codeKeyboardUpperRu;
+    //   currentArrBoard = codeKeyboardUpperEng;
 
-      initBoard();
+    //   initBoard();
 
-      document.querySelectorAll('.letter').forEach((element) => {
-        element.classList.add('letter-upper');
-      })
+    //   document.querySelectorAll('.letter').forEach((element) => {
+    //     element.classList.add('letter-upper');
+    //   })
 
-      if (target == 'ShiftLeft'){
-        document.querySelectorAll('.shift-key')[0].classList.add('active')
-      }
-      else if (target == 'ShiftRight'){
-        document.querySelectorAll('.shift-key')[1].classList.add('active');
-      }
-    }
+    //   if (target == 'ShiftLeft'){
+    //     document.querySelectorAll('.shift-key')[0].classList.add('active')
+    //   }
+    //   else if (target == 'ShiftRight'){
+    //     document.querySelectorAll('.shift-key')[1].classList.add('active');
+    //   }
+    // }
+    // else if (currentArrBoard == codeKeyboardLowerRu){
+    //   document.querySelectorAll('.k-key').forEach((element) => {
+    //     element.remove();
+    //   });
+
+    //   currentArrBoard = codeKeyboardUpperRu;
+
+    //   initBoard();
+
+    //   document.querySelectorAll('.letter').forEach((element) => {
+    //     element.classList.add('letter-upper');
+    //   })
+
+    //   if (target == 'ShiftLeft'){
+    //     document.querySelectorAll('.shift-key')[0].classList.add('active')
+    //   }
+    //   else if (target == 'ShiftRight'){
+    //     document.querySelectorAll('.shift-key')[1].classList.add('active');
+    //   }
+    // }
   }
   else if (pressSymbol == 'Control'){
     area.value += '';
@@ -248,21 +294,41 @@ document.onkeyup = function (event){
   let pressSymbol = currentArrBoard[positionKey];
 
   if (pressSymbol == 'Shift'){
-    document.querySelectorAll('.k-key').forEach((element) => {
-      element.remove();
-    });
+    switch(currentArrBoard){
 
-    initBoard();
+      case currentArrBoard = codeKeyboardUpperEng:
+        document.querySelectorAll('.k-key').forEach((element) => {
+          element.remove();
+        });
 
-    currentArrBoard = codeKeyboardLowerEng;
+        currentArrBoard = codeKeyboardLowerEng;
+    
+        initBoard();
+    
+        document.querySelectorAll('.letter').forEach((element) => {
+          element.classList.remove('letter-upper');
+        })
+        break;
 
-    document.querySelectorAll('.letter').forEach((element) => {
-      element.classList.remove('letter-upper');
-    })
+      case currentArrBoard = codeKeyboardUpperRu:
+        document.querySelectorAll('.k-key').forEach((element) => {
+          element.remove();
+        });
+
+        currentArrBoard = codeKeyboardLowerRu;
+    
+        initBoard();
+    
+        document.querySelectorAll('.letter').forEach((element) => {
+          element.classList.remove('letter-upper');
+        })
+        break;
+    }
   }
   else if (pressSymbol == 'Control'){
     area.value += '';
     flagChangeLanguage = false;
+    console.log(flagChangeLanguage)
   }
 }
 
