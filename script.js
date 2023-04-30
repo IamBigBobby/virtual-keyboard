@@ -81,7 +81,6 @@ document.onkeydown = function(event){
   let target = event.code;
   let positionKey = keyKeyboard.indexOf(target);
   let pressSymbol = currentArrBoard[positionKey];
-  console.log(pressSymbol)
 
   if (pressSymbol == 'Backspace'){
     let backspaceArr = area.value.split('');
@@ -122,6 +121,14 @@ document.onkeydown = function(event){
         });
         currentArrBoard = codeKeyboardUpperEng;
         initBoard();
+
+        document.querySelectorAll('.k-key').forEach((key) => {
+          key.addEventListener('mousedown', clickButton)
+          key.addEventListener('mouseup', function(){
+            key.classList.remove('active');
+          })
+        })
+
         document.querySelectorAll('.letter').forEach((element) => {
           element.classList.add('letter-upper');
         })
@@ -133,6 +140,14 @@ document.onkeydown = function(event){
         });
         currentArrBoard = codeKeyboardUpperRu;
         initBoard();
+
+        document.querySelectorAll('.k-key').forEach((key) => {
+          key.addEventListener('mousedown', clickButton)
+          key.addEventListener('mouseup', function(){
+            key.classList.remove('active');
+          })
+        })
+
         document.querySelectorAll('.letter').forEach((element) => {
           element.classList.add('letter-upper');
         })
@@ -145,6 +160,14 @@ document.onkeydown = function(event){
         });
         currentArrBoard = codeKeyboardLowerEng;
         initBoard();
+
+        document.querySelectorAll('.k-key').forEach((key) => {
+          key.addEventListener('mousedown', clickButton)
+          key.addEventListener('mouseup', function(){
+            key.classList.remove('active');
+          })
+        })
+
         document.querySelectorAll('.letter').forEach((element) => {
           element.classList.remove('letter-upper');
         })
@@ -157,6 +180,14 @@ document.onkeydown = function(event){
         });
         currentArrBoard = codeKeyboardLowerRu;
         initBoard();
+
+        document.querySelectorAll('.k-key').forEach((key) => {
+          key.addEventListener('mousedown', clickButton)
+          key.addEventListener('mouseup', function(){
+            key.classList.remove('active');
+          })
+        })
+
         document.querySelectorAll('.letter').forEach((element) => {
           element.classList.remove('letter-upper');
         })
@@ -226,6 +257,15 @@ document.onkeydown = function(event){
           });
           currentArrBoard = codeKeyboardLowerRu;
           initBoard();
+
+          document.querySelectorAll('.k-key').forEach((key) => {
+            key.addEventListener('mousedown', clickButton)
+            key.addEventListener('mouseup', function(){
+              key.classList.remove('active');
+            })
+          })
+
+          //вот тут
           if (target == 'AltLeft'){
             document.querySelectorAll('.alt-key')[0].classList.add('active')
           }
@@ -241,6 +281,13 @@ document.onkeydown = function(event){
           currentArrBoard = codeKeyboardLowerEng;
           initBoard();
 
+          document.querySelectorAll('.k-key').forEach((key) => {
+            key.addEventListener('mousedown', clickButton)
+            key.addEventListener('mouseup', function(){
+              key.classList.remove('active');
+            })
+          })
+
           if (target == 'AltLeft'){
             document.querySelectorAll('.alt-key')[0].classList.add('active')
           }
@@ -255,6 +302,13 @@ document.onkeydown = function(event){
           });
           currentArrBoard = codeKeyboardUpperRu;
           initBoard();
+
+          document.querySelectorAll('.k-key').forEach((key) => {
+            key.addEventListener('mousedown', clickButton)
+            key.addEventListener('mouseup', function(){
+              key.classList.remove('active');
+            })
+          })
 
           document.querySelectorAll('.letter').forEach((element) => {
             element.classList.add('letter-upper');
@@ -335,20 +389,102 @@ document.onkeyup = function (event){
 
 
 keys.forEach((key) => {
-  key.addEventListener('mousedown', function(event){
-    key.classList.add('active');
-
-    let target = event.target;
-    let pressedButton = target.getAttribute('data');
-    let positionKey = keyKeyboard.indexOf(pressedButton);
-    let pressSymbol = currentArrBoard[positionKey];
-    area.value += pressSymbol;
-
-  })
-    key.addEventListener('mouseup', function(){
+  key.addEventListener('mousedown', clickButton)
+  key.addEventListener('mouseup', function(){
     key.classList.remove('active');
   })
 })
+
+function clickButton(event){
+  let target = event.target;
+  let pressedButton = target.getAttribute('data');
+  let positionKey = keyKeyboard.indexOf(pressedButton);
+  let pressSymbol = currentArrBoard[positionKey];
+
+  if (pressSymbol == 'Backspace'){
+    let backspaceArr = area.value.split('');
+    backspaceArr.pop();
+    area.value = backspaceArr.join('');
+  }
+  else if (pressSymbol == 'Tab'){
+    area.value += '  ';
+  }
+  else if (pressSymbol == 'Enter'){
+    area.value += '\n';
+  }
+  else if (pressSymbol == '&#x2191;'){
+    arrow = document.createElement('span');
+    arrow.innerHTML = '&#x2191;';
+    area.value += arrow.innerHTML;
+  }
+  else if (pressSymbol == '&#x2190;'){
+    arrow = document.createElement('span');
+    arrow.innerHTML = '&#x2190;';
+    area.value += arrow.innerHTML;
+  }
+  else if (pressSymbol == '&#x2193;'){
+    arrow = document.createElement('span');
+    arrow.innerHTML = '&#x2193;';
+    area.value += arrow.innerHTML;
+  }
+  else if (pressSymbol == '&#x2192;'){
+    arrow = document.createElement('span');
+    arrow.innerHTML = '&#x2192;';
+    area.value += arrow.innerHTML;
+  }
+  // else if (pressSymbol == 'CapsLock'){
+  //   switch (currentArrBoard){
+  //     case currentArrBoard = codeKeyboardLowerEng:
+  //       document.querySelectorAll('.k-key').forEach((element) => {
+  //         element.remove();
+  //       });
+  //       currentArrBoard = codeKeyboardUpperEng;
+  //       initBoard();
+  //       document.querySelectorAll('.letter').forEach((element) => {
+  //         element.classList.add('letter-upper');
+  //       })
+  //       document.querySelector('.capslk-key').classList.add('active');
+  //       break;
+  //     case currentArrBoard = codeKeyboardLowerRu:
+  //       document.querySelectorAll('.k-key').forEach((element) => {
+  //         element.remove();
+  //       });
+  //       currentArrBoard = codeKeyboardUpperRu;
+  //       initBoard();
+  //       document.querySelectorAll('.letter').forEach((element) => {
+  //         element.classList.add('letter-upper');
+  //       })
+  //       document.querySelector('.capslk-key').classList.add('active');
+  //       break;
+      
+  //     case currentArrBoard = codeKeyboardUpperEng:
+  //       document.querySelectorAll('.k-key').forEach((element) => {
+  //         element.remove();
+  //       });
+  //       currentArrBoard = codeKeyboardLowerEng;
+  //       initBoard();
+  //       document.querySelectorAll('.letter').forEach((element) => {
+  //         element.classList.remove('letter-upper');
+  //       })
+  //       document.querySelector('.capslk-key').classList.add('active');
+  //       break;
+
+  //     case currentArrBoard = codeKeyboardUpperRu:
+  //       document.querySelectorAll('.k-key').forEach((element) => {
+  //         element.remove();
+  //       });
+  //       currentArrBoard = codeKeyboardLowerRu;
+  //       initBoard();
+  //       document.querySelectorAll('.letter').forEach((element) => {
+  //         element.classList.remove('letter-upper');
+  //       })
+  //       document.querySelector('.capslk-key').classList.add('active');
+  //   }
+  // }
+  else{
+    area.value += pressSymbol;
+  }
+}
 
 
 
