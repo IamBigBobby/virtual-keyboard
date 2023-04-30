@@ -28,9 +28,28 @@ function initBoard(){
   textareaInit.innerHTML = '';
   let out = '';
   for (let i = 0; i < currentArrBoard.length; i++){
-    if (currentArrBoard[i] == 'Enter' || currentArrBoard[i] == 'Backspace' || currentArrBoard[i] == 'Tab' || currentArrBoard[i] == 'CapsLock'|| currentArrBoard[i] == 'Shift' || currentArrBoard[i] == 'Control' || currentArrBoard[i] == 'Alt'){
-      out += '<div class="k-key specical-key" data="'+keyKeyboard[i]+'">'+currentArrBoard[i]+'</div>'
+    if (currentArrBoard[i] == 'Alt'){
+      out += '<div class="k-key specical-key alt-key" data="'+keyKeyboard[i]+'">'+currentArrBoard[i]+'</div>';
     }
+    else if (currentArrBoard[i] == 'Enter'){
+      out += '<div class="k-key specical-key enter-key" data="'+keyKeyboard[i]+'">'+currentArrBoard[i]+'</div>';
+    }
+    else if (currentArrBoard[i] == 'Backspace' ){
+      out += '<div class="k-key specical-key backspace-key" data="'+keyKeyboard[i]+'">'+currentArrBoard[i]+'</div>';
+    }
+    else if (currentArrBoard[i] == 'Tab'){
+      out += '<div class="k-key specical-key tab-key" data="'+keyKeyboard[i]+'">'+currentArrBoard[i]+'</div>';
+    }
+    else if (currentArrBoard[i] == 'CapsLock'){
+      out += '<div class="k-key specical-key capslk-key" data="'+keyKeyboard[i]+'">'+currentArrBoard[i]+'</div>';
+    }
+    else if (currentArrBoard[i] == 'Shift'){
+      out += '<div class="k-key specical-key shift-key" data="'+keyKeyboard[i]+'">'+currentArrBoard[i]+'</div>';
+    }
+    else if (currentArrBoard[i] == 'Control'){
+      out += '<div class="k-key specical-key cntrl-key" data="'+keyKeyboard[i]+'">'+currentArrBoard[i]+'</div>';
+    }
+
     else if (currentArrBoard[i] == ' '){
       out += '<div class="k-key space-key" data="'+keyKeyboard[i]+'">'+currentArrBoard[i]+'</div>'
     }
@@ -48,11 +67,14 @@ const keys = document.querySelectorAll('.k-key');
 area = document.querySelector('.textarea');
 
 document.onkeydown = function(event){
-  document.querySelector('.k-key[data="'+ event.code +'"]').classList.add('active');
+
   event.preventDefault();
+  document.querySelector('.k-key[data="'+ event.code +'"]').classList.add('active');
   let target = event.code;
   let positionKey = keyKeyboard.indexOf(target);
   let pressSymbol = currentArrBoard[positionKey];
+
+  console.log(target)
 
   if (pressSymbol == 'Backspace'){
     let backspaceArr = area.value.split('');
@@ -73,11 +95,13 @@ document.onkeydown = function(event){
 
       initBoard();
 
+
       currentArrBoard = codeKeyboardUpperEng;
 
       document.querySelectorAll('.letter').forEach((element) => {
         element.classList.add('letter-upper');
       })
+      document.querySelector('.capslk-key').classList.add('active');
     }
     else if (currentArrBoard == codeKeyboardUpperEng){
       document.querySelectorAll('.k-key').forEach((element) => {
@@ -91,6 +115,7 @@ document.onkeydown = function(event){
       document.querySelectorAll('.letter').forEach((element) => {
         element.classList.remove('letter-upper');
       })
+      document.querySelector('.capslk-key').classList.add('active');
     }
   }
   else if (pressSymbol == 'Shift'){
