@@ -21,7 +21,7 @@ initKeyboardWrapper();
 function initTextArea(){
   let wrapper = document.querySelector('.keyboard-wrapper');
   wrapper.innerHTML = '';
-  let out = '<textarea class="textarea" rows="10" cols="130" placeholder="Введите данные с клавиатуры" disabled></textarea>';
+  let out = '<textarea class="textarea" rows="10" cols="130" placeholder="Введите данные с клавиатуры \nСмена языка: ctrl+alt \nКлавиатура создана в операционной системе Windows" disabled></textarea>';
   wrapper.insertAdjacentHTML('afterbegin', out);
 }
 
