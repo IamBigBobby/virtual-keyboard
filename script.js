@@ -207,6 +207,13 @@ document.onkeydown = function(event){
 
         initBoard();
 
+        document.querySelectorAll('.k-key').forEach((key) => {
+          key.addEventListener('mousedown', clickButton)
+          key.addEventListener('mouseup', function(){
+            key.classList.remove('active');
+          })
+        })
+
         document.querySelectorAll('.letter').forEach((element) => {
           element.classList.add('letter-upper');
         })
@@ -228,6 +235,13 @@ document.onkeydown = function(event){
           currentArrBoard = codeKeyboardUpperRu;
     
           initBoard();
+
+          document.querySelectorAll('.k-key').forEach((key) => {
+            key.addEventListener('mousedown', clickButton)
+            key.addEventListener('mouseup', function(){
+              key.classList.remove('active');
+            })
+          })
     
           document.querySelectorAll('.letter').forEach((element) => {
             element.classList.add('letter-upper');
@@ -364,6 +378,14 @@ document.onkeyup = function (event){
         });
         currentArrBoard = codeKeyboardLowerEng;
         initBoard();
+
+        document.querySelectorAll('.k-key').forEach((key) => {
+          key.addEventListener('mousedown', clickButton)
+          key.addEventListener('mouseup', function(){
+            key.classList.remove('active');
+          })
+        })
+
         document.querySelectorAll('.letter').forEach((element) => {
           element.classList.remove('letter-upper');
         })
@@ -375,6 +397,14 @@ document.onkeyup = function (event){
         });
         currentArrBoard = codeKeyboardLowerRu;
         initBoard();
+
+        document.querySelectorAll('.k-key').forEach((key) => {
+          key.addEventListener('mousedown', clickButton)
+          key.addEventListener('mouseup', function(){
+            key.classList.remove('active');
+          })
+        })
+
         document.querySelectorAll('.letter').forEach((element) => {
           element.classList.remove('letter-upper');
         })
