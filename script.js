@@ -2,7 +2,11 @@ const keyKeyboard = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit
 
 const codeKeyboardLowerEng = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'Enter', 'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'ArrowUp', 'Shift', 'Control', 'Alt', ' ', 'Alt', 'Control', 'ArrowLeft', 'ArrowDown', 'ArrowRight'];
 
-const codeKeyboardUpperEng = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', '\\', 'CapsLock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';', "'", 'Enter', 'Shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/', 'ArrowUp', 'Shift', 'Control', 'Alt', ' ', 'Alt', 'Control', 'ArrowLeft', 'ArrowDown', 'ArrowRight'];
+const codeKeyboardUpperEng = ['~', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '_', '+', 'Backspace', 'Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', '\\', 'CapsLock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';', "'", 'Enter', 'Shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/', 'ArrowUp', 'Shift', 'Control', 'Alt', ' ', 'Alt', 'Control', 'ArrowLeft', 'ArrowDown', 'ArrowRight'];
+
+const codeKeyboardLowerRu = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\\', 'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', "э", 'Enter', 'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', 'ArrowUp', 'Shift', 'Control', 'Alt', ' ', 'Alt', 'Control', 'ArrowLeft', 'ArrowDown', 'ArrowRight'];
+
+const codeKeyboardUpperRu = ['Ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '_', '+', 'Backspace', 'Tab', 'Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х', 'Ъ', '/', 'CapsLock', 'Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', "Э", 'Enter', 'Shift', 'Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', ',', 'ArrowUp', 'Shift', 'Control', 'Alt', ' ', 'Alt', 'Control', 'ArrowLeft', 'ArrowDown', 'ArrowRight'];
 
 let currentArrBoard = codeKeyboardLowerEng;
 
@@ -64,7 +68,8 @@ initBoard();
 
 // insert functions
 const keys = document.querySelectorAll('.k-key');
-area = document.querySelector('.textarea');
+let area = document.querySelector('.textarea');
+let flagChangeLanguage = false;
 
 document.onkeydown = function(event){
 
@@ -73,8 +78,8 @@ document.onkeydown = function(event){
   let target = event.code;
   let positionKey = keyKeyboard.indexOf(target);
   let pressSymbol = currentArrBoard[positionKey];
-
-  console.log(target)
+  
+  console.log(target);
 
   if (pressSymbol == 'Backspace'){
     let backspaceArr = area.value.split('');
@@ -93,10 +98,23 @@ document.onkeydown = function(event){
         element.remove();
       });
 
+      currentArrBoard = codeKeyboardUpperEng;
+
       initBoard();
 
+      document.querySelectorAll('.letter').forEach((element) => {
+        element.classList.add('letter-upper');
+      })
+      document.querySelector('.capslk-key').classList.add('active');
+    }
+    else if (currentArrBoard == codeKeyboardLowerRu){
+      document.querySelectorAll('.k-key').forEach((element) => {
+        element.remove();
+      });
 
-      currentArrBoard = codeKeyboardUpperEng;
+      currentArrBoard = codeKeyboardUpperRu;
+
+      initBoard();
 
       document.querySelectorAll('.letter').forEach((element) => {
         element.classList.add('letter-upper');
@@ -108,9 +126,23 @@ document.onkeydown = function(event){
         element.remove();
       });
 
+      currentArrBoard = codeKeyboardLowerEng;
+
       initBoard();
 
-      currentArrBoard = codeKeyboardLowerEng;
+      document.querySelectorAll('.letter').forEach((element) => {
+        element.classList.remove('letter-upper');
+      })
+      document.querySelector('.capslk-key').classList.add('active');
+    }
+    else if (currentArrBoard == codeKeyboardUpperRu){
+      document.querySelectorAll('.k-key').forEach((element) => {
+        element.remove();
+      });
+
+      currentArrBoard = codeKeyboardLowerRu;
+
+      initBoard();
 
       document.querySelectorAll('.letter').forEach((element) => {
         element.classList.remove('letter-upper');
@@ -124,9 +156,29 @@ document.onkeydown = function(event){
         element.remove();
       });
 
+      currentArrBoard = codeKeyboardUpperEng;
+
       initBoard();
 
-      currentArrBoard = codeKeyboardUpperEng;
+      document.querySelectorAll('.letter').forEach((element) => {
+        element.classList.add('letter-upper');
+      })
+
+      if (target == 'ShiftLeft'){
+        document.querySelectorAll('.shift-key')[0].classList.add('active')
+      }
+      else if (target == 'ShiftRight'){
+        document.querySelectorAll('.shift-key')[1].classList.add('active');
+      }
+    }
+    else if (currentArrBoard == codeKeyboardLowerRu){
+      document.querySelectorAll('.k-key').forEach((element) => {
+        element.remove();
+      });
+
+      currentArrBoard = codeKeyboardUpperRu;
+
+      initBoard();
 
       document.querySelectorAll('.letter').forEach((element) => {
         element.classList.add('letter-upper');
@@ -140,14 +192,57 @@ document.onkeydown = function(event){
       }
     }
   }
+  else if (pressSymbol == 'Control'){
+    area.value += '';
+    flagChangeLanguage = true;
+  }
+  else if (pressSymbol == 'Alt'){
+    area.value += '';
+    if ((event.code == 'AltLeft' || event.code == 'AltRight') && (flag = true)){
+      switch (currentArrBoard){
+
+        case currentArrBoard = codeKeyboardLowerEng:
+          document.querySelectorAll('.k-key').forEach((element) => {
+            element.remove();
+          });
+          currentArrBoard = codeKeyboardLowerRu;
+          initBoard();
+          break;
+
+        case currentArrBoard = codeKeyboardLowerRu:
+          document.querySelectorAll('.k-key').forEach((element) => {
+            element.remove();
+          });
+          currentArrBoard = codeKeyboardLowerEng;
+          initBoard();
+          break;
+
+        case currentArrBoard = codeKeyboardUpperEng:
+          document.querySelectorAll('.k-key').forEach((element) => {
+            element.remove();
+          });
+          currentArrBoard = codeKeyboardUpperRu;
+          initBoard();
+          break;
+
+        case currentArrBoard = codeKeyboardUpperRu:
+          document.querySelectorAll('.k-key').forEach((element) => {
+            element.remove();
+          });
+          currentArrBoard = codeKeyboardUpperEng;
+          initBoard();
+          break;
+      }
+    }
+  }
   else{
     area.value += pressSymbol;
   }
 }
 
 document.onkeyup = function (event){
-  document.querySelector('.k-key[data="'+ event.code +'"]').classList.remove('active');
   event.preventDefault();
+  document.querySelector('.k-key[data="'+ event.code +'"]').classList.remove('active');
   let target = event.code;
   let positionKey = keyKeyboard.indexOf(target);
   let pressSymbol = currentArrBoard[positionKey];
@@ -164,6 +259,10 @@ document.onkeyup = function (event){
     document.querySelectorAll('.letter').forEach((element) => {
       element.classList.remove('letter-upper');
     })
+  }
+  else if (pressSymbol == 'Control'){
+    area.value += '';
+    flagChangeLanguage = false;
   }
 }
 
