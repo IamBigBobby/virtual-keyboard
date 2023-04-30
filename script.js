@@ -78,8 +78,6 @@ document.onkeydown = function(event){
   let target = event.code;
   let positionKey = keyKeyboard.indexOf(target);
   let pressSymbol = currentArrBoard[positionKey];
-  
-  console.log(target);
 
   if (pressSymbol == 'Backspace'){
     let backspaceArr = area.value.split('');
@@ -93,61 +91,52 @@ document.onkeydown = function(event){
     area.value += '\n';
   }
   else if (pressSymbol == 'CapsLock'){
-    if (currentArrBoard == codeKeyboardLowerEng){
-      document.querySelectorAll('.k-key').forEach((element) => {
-        element.remove();
-      });
+    switch (currentArrBoard){
+      case currentArrBoard = codeKeyboardLowerEng:
+        document.querySelectorAll('.k-key').forEach((element) => {
+          element.remove();
+        });
+        currentArrBoard = codeKeyboardUpperEng;
+        initBoard();
+        document.querySelectorAll('.letter').forEach((element) => {
+          element.classList.add('letter-upper');
+        })
+        document.querySelector('.capslk-key').classList.add('active');
+        break;
+      case currentArrBoard = codeKeyboardLowerRu:
+        document.querySelectorAll('.k-key').forEach((element) => {
+          element.remove();
+        });
+        currentArrBoard = codeKeyboardUpperRu;
+        initBoard();
+        document.querySelectorAll('.letter').forEach((element) => {
+          element.classList.add('letter-upper');
+        })
+        document.querySelector('.capslk-key').classList.add('active');
+        break;
+      
+      case currentArrBoard = codeKeyboardUpperEng:
+        document.querySelectorAll('.k-key').forEach((element) => {
+          element.remove();
+        });
+        currentArrBoard = codeKeyboardLowerEng;
+        initBoard();
+        document.querySelectorAll('.letter').forEach((element) => {
+          element.classList.remove('letter-upper');
+        })
+        document.querySelector('.capslk-key').classList.add('active');
+        break;
 
-      currentArrBoard = codeKeyboardUpperEng;
-
-      initBoard();
-
-      document.querySelectorAll('.letter').forEach((element) => {
-        element.classList.add('letter-upper');
-      })
-      document.querySelector('.capslk-key').classList.add('active');
-    }
-    else if (currentArrBoard == codeKeyboardLowerRu){
-      document.querySelectorAll('.k-key').forEach((element) => {
-        element.remove();
-      });
-
-      currentArrBoard = codeKeyboardUpperRu;
-
-      initBoard();
-
-      document.querySelectorAll('.letter').forEach((element) => {
-        element.classList.add('letter-upper');
-      })
-      document.querySelector('.capslk-key').classList.add('active');
-    }
-    else if (currentArrBoard == codeKeyboardUpperEng){
-      document.querySelectorAll('.k-key').forEach((element) => {
-        element.remove();
-      });
-
-      currentArrBoard = codeKeyboardLowerEng;
-
-      initBoard();
-
-      document.querySelectorAll('.letter').forEach((element) => {
-        element.classList.remove('letter-upper');
-      })
-      document.querySelector('.capslk-key').classList.add('active');
-    }
-    else if (currentArrBoard == codeKeyboardUpperRu){
-      document.querySelectorAll('.k-key').forEach((element) => {
-        element.remove();
-      });
-
-      currentArrBoard = codeKeyboardLowerRu;
-
-      initBoard();
-
-      document.querySelectorAll('.letter').forEach((element) => {
-        element.classList.remove('letter-upper');
-      })
-      document.querySelector('.capslk-key').classList.add('active');
+      case currentArrBoard = codeKeyboardUpperRu:
+        document.querySelectorAll('.k-key').forEach((element) => {
+          element.remove();
+        });
+        currentArrBoard = codeKeyboardLowerRu;
+        initBoard();
+        document.querySelectorAll('.letter').forEach((element) => {
+          element.classList.remove('letter-upper');
+        })
+        document.querySelector('.capslk-key').classList.add('active');
     }
   }
   else if (pressSymbol == 'Shift'){
@@ -197,54 +186,15 @@ document.onkeydown = function(event){
           }
           break;
     }
-    // if (currentArrBoard == codeKeyboardLowerEng){
-    //   document.querySelectorAll('.k-key').forEach((element) => {
-    //     element.remove();
-    //   });
-
-    //   currentArrBoard = codeKeyboardUpperEng;
-
-    //   initBoard();
-
-    //   document.querySelectorAll('.letter').forEach((element) => {
-    //     element.classList.add('letter-upper');
-    //   })
-
-    //   if (target == 'ShiftLeft'){
-    //     document.querySelectorAll('.shift-key')[0].classList.add('active')
-    //   }
-    //   else if (target == 'ShiftRight'){
-    //     document.querySelectorAll('.shift-key')[1].classList.add('active');
-    //   }
-    // }
-    // else if (currentArrBoard == codeKeyboardLowerRu){
-    //   document.querySelectorAll('.k-key').forEach((element) => {
-    //     element.remove();
-    //   });
-
-    //   currentArrBoard = codeKeyboardUpperRu;
-
-    //   initBoard();
-
-    //   document.querySelectorAll('.letter').forEach((element) => {
-    //     element.classList.add('letter-upper');
-    //   })
-
-    //   if (target == 'ShiftLeft'){
-    //     document.querySelectorAll('.shift-key')[0].classList.add('active')
-    //   }
-    //   else if (target == 'ShiftRight'){
-    //     document.querySelectorAll('.shift-key')[1].classList.add('active');
-    //   }
-    // }
   }
   else if (pressSymbol == 'Control'){
     area.value += '';
     flagChangeLanguage = true;
+    console.log(flagChangeLanguage)
   }
   else if (pressSymbol == 'Alt'){
     area.value += '';
-    if ((event.code == 'AltLeft' || event.code == 'AltRight') && (flag = true)){
+    if ((event.code == 'AltLeft' || event.code == 'AltRight') && flagChangeLanguage == true){
       switch (currentArrBoard){
 
         case currentArrBoard = codeKeyboardLowerEng:
@@ -253,6 +203,12 @@ document.onkeydown = function(event){
           });
           currentArrBoard = codeKeyboardLowerRu;
           initBoard();
+          // if (target == 'AltLeft'){
+          //   document.querySelectorAll('.alt-key')[0].classList.add('active')
+          // }
+          // else if (target == 'AltRight'){
+          //   document.querySelectorAll('.alt-key')[1].classList.add('active');
+          // }
           break;
 
         case currentArrBoard = codeKeyboardLowerRu:
@@ -261,6 +217,12 @@ document.onkeydown = function(event){
           });
           currentArrBoard = codeKeyboardLowerEng;
           initBoard();
+          // if (target == 'AltLeft'){
+          //   document.querySelectorAll('.alt-key')[0].classList.add('active')
+          // }
+          // else if (target == 'AltRight'){
+          //   document.querySelectorAll('.alt-key')[1].classList.add('active');
+          // }
           break;
 
         case currentArrBoard = codeKeyboardUpperEng:
@@ -269,6 +231,12 @@ document.onkeydown = function(event){
           });
           currentArrBoard = codeKeyboardUpperRu;
           initBoard();
+          // if (target == 'AltLeft'){
+          //   document.querySelectorAll('.alt-key')[0].classList.add('active')
+          // }
+          // else if (target == 'AltRight'){
+          //   document.querySelectorAll('.alt-key')[1].classList.add('active');
+          // }
           break;
 
         case currentArrBoard = codeKeyboardUpperRu:
@@ -277,6 +245,12 @@ document.onkeydown = function(event){
           });
           currentArrBoard = codeKeyboardUpperEng;
           initBoard();
+          // if (target == 'AltLeft'){
+          //   document.querySelectorAll('.alt-key')[0].classList.add('active')
+          // }
+          // else if (target == 'AltRight'){
+          //   document.querySelectorAll('.alt-key')[1].classList.add('active');
+          // }
           break;
       }
     }
@@ -300,11 +274,8 @@ document.onkeyup = function (event){
         document.querySelectorAll('.k-key').forEach((element) => {
           element.remove();
         });
-
         currentArrBoard = codeKeyboardLowerEng;
-    
         initBoard();
-    
         document.querySelectorAll('.letter').forEach((element) => {
           element.classList.remove('letter-upper');
         })
@@ -314,11 +285,8 @@ document.onkeyup = function (event){
         document.querySelectorAll('.k-key').forEach((element) => {
           element.remove();
         });
-
         currentArrBoard = codeKeyboardLowerRu;
-    
         initBoard();
-    
         document.querySelectorAll('.letter').forEach((element) => {
           element.classList.remove('letter-upper');
         })
