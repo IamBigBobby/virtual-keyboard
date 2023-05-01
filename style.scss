@@ -1,0 +1,40 @@
+.keyboard-wrapper{
+  margin: 0 auto;
+  width: 960px;
+  display: flex;
+  flex-wrap: wrap;
+  border: 2px solid black;
+  padding: 5px;
+  border-radius: 5px;
+  font-family: 'Comme', sans-serif;
+  background-color: gray;
+}
+.k-key{
+  width: 50px;
+  height: 50px;
+  border: none;
+  margin: 3px;
+  padding: 3px;
+  border-radius: 5px;
+  background-color: white;
+}
+.specical-key{
+  width: 100px;
+}
+.space-key{
+  width: 220px;
+}
+.letter{
+  text-transform: lowercase;
+}
+.letter-upper{
+  text-transform: uppercase;
+}
+.active{
+  background-color: orange;
+  transition: 0.2s;
+  border-radius: 10px;
+}
+.textarea{
+  resize: none;
+}
